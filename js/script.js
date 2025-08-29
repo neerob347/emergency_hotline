@@ -48,3 +48,23 @@ historyList.appendChild(li);
   }
   
 }
+clearBtn.onclick = function () {
+  historyList.innerHTML="";
+};
+
+let copyCount = 0;
+const copyButtons = document.querySelectorAll(".copyBtn");
+
+for (let btn of copyButtons) {
+  btn.addEventListener("click", function () {
+    const card = this.closest(".bg-white");  
+    const title = card.querySelector(".serviceName").innerText;   
+    const info  = card.querySelector(".serviceNumber").innerText; 
+
+    navigator.clipboard.writeText(info);
+    copyCount++;
+    document.getElementById("copyCounter").innerText = copyCount;
+
+    alert(`✅ Copied: ${title} - ${info}`);
+ });
+}
